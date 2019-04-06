@@ -1,10 +1,10 @@
-<h1>虹软开发2.0封装</h1>
+<h1>虹软开发2.0封装(A dll for ArcSoft face-detection engine version 2.0)</h1>
 
 
 
-<p>本类库用于虹软人脸识别库C#语言封装使用</p>
+<p>本类库用于虹软人脸识别库C#语言封装使用(A dll for ArcSoft face-detection engine version 2.0 based on C# Language)</p>
 
-<pre><h2>激活：</h2>
+<pre><h2>激活：(Function for Engine Activation)</h2>
 ResultCode result = EngineActivate.ActivateEngine(string appId, string appKey)
 
 --appid和appkey在官网获取 -- result是一个枚举的状态码
