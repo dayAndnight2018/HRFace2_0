@@ -29,14 +29,14 @@ Bool result = EngineFactory.DisposeEngine()
 
 <pre>
 <h2>Face-num Detection:</h2>
-Step 1: Init the Engine
+<b>Step 1: Init the Engine</b>
 
 public FaceDetection(IntPtr hEngine, Bitmap image)
 
 -- hEngine is the engine mentioned above
 -- image, Bitmap image is available, and no need predealling
 
-Step 2: Get Face-num
+<b>Step 2: Get Face-num</b>
 
 public int FindFaceNum()
 
@@ -45,14 +45,14 @@ return the number of faces
 
 <pre>
 <h2>Age Detection:</h2>
-Step 1: Init the Engine
+<b>Step 1: Init the Engine</b>
 
 public FaceDetection(IntPtr hEngine, Bitmap image)
 
 -- hEngine is the engine mentioned above
 -- image, Bitmap image is available, and no need predealling
 
-Step 2: Get the age
+<b>Step 2: Get the age</b>
 
 public int GetAge()
 return the age 
@@ -60,14 +60,14 @@ return the age
 
 <pre>
 <h2>Gender Detection</h2>
-Step 1: Init the Engine
+<b>Step 1: Init the Engine</b>
 
 public FaceDetection(IntPtr hEngine, Bitmap image)
 
 -- hEngine is the engine mentioned above
 -- image, Bitmap image is available, and no need predealling
 
-Step 2: Get the gender
+<b>Step 2: Get the gender</b>
 
 public string GetGender()
 
@@ -76,22 +76,22 @@ return the gender
 
 <pre>
 <h2>Face similiar Detection</h2>
-Type 1:
+<b>Type 1:</b>
 
-Step 1: Init the Engine
+<b>Step 1: Init the Engine</b>
 
 public FaceDetection(IntPtr hEngine, Bitmap image1, Bitmap image2)
 -- hEngine is the engine mentioned above
 -- image1，Bitmap image is available, and no need predealling
 -- image2，Bitmap image is available, and no need predealling
 
-Step 2: Get the similiar
+<b>Step 2: Get the similiar</b>
 
 public float Compare()
 
-Type 2:
+<b>Type 2:</b>
 
-Compare the feature stored already
+<b>Compare the feature stored already</b>
 
 public float Compare(byte[] data1, byte[] data2)
 
