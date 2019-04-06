@@ -8,88 +8,93 @@
 <h2>Engine Activation:</h2>
 ResultCode result = EngineActivate.ActivateEngine(string appId, string appKey)
 
---appid and appkey could be applied from the <a href="https://www.arcsoft.com.cn/">https://www.arcsoft.com.cn/</a>
+-- appid and appkey could be applied from the <a href="https://www.arcsoft.com.cn/">https://www.arcsoft.com.cn/</a>
 -- The type of result object is an enum to identify the result
 </pre>
 
 <pre>
-<h2>获取引擎：</h2>
+<h2>Engine Obtain:</h2>
 IntPtr engine = EngineFactory.GetEngineInstance(
 uint mode,DetectionOrientPriority orientPriority, int detectFaceScaleVal = 12)
---engine是引擎
---mode可以根据EngineFactory.Video或者EngineFactory.Image设置是图像还是视频，目前只支持图像。
--- orientPriority是枚举
--- detectFaceScaleVal可以不填
+-- engine stands for face-detection engine
+-- mode could be  EngineFactory.Video(for video) or EngineFactory.Image(for image)
+-- orientPriority is also an enum
+-- detectFaceScaleVal is optional
 </pre>
 
 <pre>
-<h2>释放引擎：</h2>
+<h2>Engine Free:</h2>
 Bool result = EngineFactory.DisposeEngine()
 </pre>
 
 <pre>
-<h2>人脸个数检测：</h2>
-1.初始化人脸检测器：
+<h2>Face-num Detection:</h2>
+Step 1: Init the Engine
 
 public FaceDetection(IntPtr hEngine, Bitmap image)
 
--- hEngine就是获取的引擎
---image，bitmap格式的图片，不需要提前处理图片大小，内部有处理操作
-2.获取人脸数量
+-- hEngine is the engine mentioned above
+-- image, Bitmap image is available, and no need predealling
+
+Step 2: Get Face-num
 
 public int FindFaceNum()
 
-返回人脸数量
+return the number of faces
 </pre>
 
 <pre>
-<h2>人脸年龄检测：</h2>
-1.初始化人脸检测器：
+<h2>Age Detection:</h2>
+Step 1: Init the Engine
 
 public FaceDetection(IntPtr hEngine, Bitmap image)
 
--- hEngine就是获取的引擎
---image，bitmap格式的图片，不需要提前处理图片大小，内部有处理操作
-2.获取人脸年龄
+-- hEngine is the engine mentioned above
+-- image, Bitmap image is available, and no need predealling
+
+Step 2: Get the age
 
 public int GetAge()
-返回人脸年龄
+return the age 
 </pre>
 
 <pre>
-<h2>人脸性别检测：</h2>
-1.初始化人脸检测器：
+<h2>Gender Detection</h2>
+Step 1: Init the Engine
 
 public FaceDetection(IntPtr hEngine, Bitmap image)
 
--- hEngine就是获取的引擎
---image，bitmap格式的图片，不需要提前处理图片大小，内部有处理操作
-2.获取人脸性别
+-- hEngine is the engine mentioned above
+-- image, Bitmap image is available, and no need predealling
+
+Step 2: Get the gender
 
 public string GetGender()
 
-返回人脸性别
+return the gender
 </pre>
 
 <pre>
-<h2>人脸相似度对比：</h2>
-方式一：
+<h2>Face similiar Detection</h2>
+Type 1:
 
-1.初始化人脸检测器：
+Step 1: Init the Engine
 
 public FaceDetection(IntPtr hEngine, Bitmap image1, Bitmap image2)
--- hEngine就是获取的引擎
---image1，bitmap格式的图片，不需要提前处理图片大小，内部有处理操作
---image2，bitmap格式的图片，不需要提前处理图片大小，内部有处理操作
-2.返回相似度
+-- hEngine is the engine mentioned above
+-- image1，Bitmap image is available, and no need predealling
+-- image2，Bitmap image is available, and no need predealling
+
+Step 2: Get the similiar
 
 public float Compare()
-方式二：
 
-返回相似度(直接对比)
+Type 2:
+
+Compare the feature stored already
 
 public float Compare(byte[] data1, byte[] data2)
 
---data1是人脸图像数据，大小1032
---data2是人脸图像数据，大小1032
+-- data1 is the first face feature of size 1032 bytes
+-- data1 is the second face feature of size 1032 bytes
 </pre>
