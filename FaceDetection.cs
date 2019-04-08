@@ -260,29 +260,29 @@ namespace HAF_2_0
         /// <returns></returns>
         public float Compare()
         {
-            byte[] data1 = getFaceFeature(image1);
-            byte[] data2 = getFaceFeature(image2);
-            if (data1 == null || data2 == null || data1.Length <= 0 || data2.Length <= 0)
+            try
             {
-                return 0.0f ;
-            }
-            FaceFeature feature1 = new FaceFeature();
-            FaceFeature feature2 = new FaceFeature();
-            IntPtr ptr1 = Marshal.AllocHGlobal(data1.Length);
-            IntPtr ptr2 = Marshal.AllocHGlobal(data2.Length);
-            Marshal.Copy(data1,0,ptr1,data1.Length);
-            Marshal.Copy(data2,0,ptr2,data2.Length);
-            feature1.feature = ptr1;
-            feature1.featureSize = 1032;
-            feature2.feature = ptr2;
-            feature2.featureSize = 1032;
-            float similar = 0.0f;
-            var compareResult = ASFAPI.ASFFaceFeatureCompare(hEngine, feature1, feature2, ref similar);
-            if (compareResult == (int)ResultCode.成功)
-            {
+                byte[] data1 = getFaceFeature(image1);
+                byte[] data2 = getFaceFeature(image2);
+                FaceFeature feature1 = new FaceFeature();
+                feature1.feature = Marshal.AllocHGlobal(data1.Length);
+                Marshal.Copy(data1, 0, feature1.feature, data1.Length);
+                feature1.featureSize = data1.Length;
+                IntPtr pLocalFeature1 = Marshal.AllocHGlobal(Marshal.SizeOf(feature1));
+                Marshal.StructureToPtr(feature1, pLocalFeature1, false);
+
+                FaceFeature feature2 = new FaceFeature();
+                feature2.feature = Marshal.AllocHGlobal(data2.Length);
+                Marshal.Copy(data2, 0, feature2.feature, data2.Length);
+                feature2.featureSize = data2.Length;
+                IntPtr pLocalFeature2 = Marshal.AllocHGlobal(Marshal.SizeOf(feature2));
+                Marshal.StructureToPtr(feature2, pLocalFeature2, false);
+                float similar = 0.0f;
+
+                ASFAPI.ASFFaceFeatureCompare(hEngine, pLocalFeature1, pLocalFeature2, out similar);
                 return similar;
             }
-            else
+            catch (Exception ex)
             {
                 return 0.0f;
             }
@@ -297,27 +297,27 @@ namespace HAF_2_0
         /// <returns></returns>
         public float Compare(byte[] data1, byte[] data2)
         {
-            if (data1 == null || data2 == null || data1.Length <= 0 || data2.Length <= 0)
+            try
             {
-                return 0.0f;
-            }
-            FaceFeature feature1 = new FaceFeature();
-            FaceFeature feature2 = new FaceFeature();
-            IntPtr ptr1 = Marshal.AllocHGlobal(data1.Length);
-            IntPtr ptr2 = Marshal.AllocHGlobal(data2.Length);
-            Marshal.Copy(data1, 0, ptr1, data1.Length);
-            Marshal.Copy(data2, 0, ptr2, data2.Length);
-            feature1.feature = ptr1;
-            feature1.featureSize = 1032;
-            feature2.feature = ptr2;
-            feature2.featureSize = 1032;
-            float similar = 0.0f;
-            var compareResult = ASFAPI.ASFFaceFeatureCompare(hEngine, feature1, feature2, ref similar);
-            if (compareResult == (int)ResultCode.成功)
-            {
+                FaceFeature feature1 = new FaceFeature();
+                feature1.feature = Marshal.AllocHGlobal(data1.Length);
+                Marshal.Copy(data1, 0, feature1.feature, data1.Length);
+                feature1.featureSize = data1.Length;
+                IntPtr pLocalFeature1 = Marshal.AllocHGlobal(Marshal.SizeOf(feature1));
+                Marshal.StructureToPtr(feature1, pLocalFeature1, false);
+
+                FaceFeature feature2 = new FaceFeature();
+                feature2.feature = Marshal.AllocHGlobal(data2.Length);
+                Marshal.Copy(data2, 0, feature2.feature, data2.Length);
+                feature2.featureSize = data2.Length;
+                IntPtr pLocalFeature2 = Marshal.AllocHGlobal(Marshal.SizeOf(feature2));
+                Marshal.StructureToPtr(feature2, pLocalFeature2, false);
+                float similar = 0.0f;
+
+                ASFAPI.ASFFaceFeatureCompare(hEngine, pLocalFeature1, pLocalFeature2, out similar);
                 return similar;
             }
-            else
+            catch (Exception ex)
             {
                 return 0.0f;
             }
